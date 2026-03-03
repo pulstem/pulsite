@@ -464,9 +464,9 @@ const stationsData = {
       location: 'Stade Chaban-Delmas, Bordeaux',
       images: [
          'https://res.cloudinary.com/dimmeavlk/video/upload/v1772447029/ubb3_yenxxt.mp4',
-         'images/ubb.jpg',
-         'images/ubb2.jpg',
-         'images/ubb4.jpg'
+         'images/ubb.webp',
+         'images/ubb2.webp',
+         'images/ubb4.webp'
       ],
       credits: [null, null, '@armel.hiconi', null],
       desc: {
@@ -479,9 +479,9 @@ const stationsData = {
       location: 'Espace Mably, Bordeaux',
       images: [
          'https://res.cloudinary.com/dimmeavlk/video/upload/v1772448275/EOTU-_20211115_a746435_18_qhcei6.mp4',
-         'images/mably1.jpg',
-         'images/mably.jpg',
-         'images/mably2.jpg'
+         'images/mably1.webp',
+         'images/mably.webp',
+         'images/mably2.webp'
       ],
       credits: ['@_papillondenuit_', '@_papillondenuit_', null, null],
       desc: {
@@ -494,10 +494,10 @@ const stationsData = {
       location: 'Château de Seguin, Bordeaux',
       images: [
          'https://res.cloudinary.com/dimmeavlk/video/upload/v1772448734/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_ngxfyj.mov',
-         'images/seguin.jpg',
+         'images/seguin.webp',
          'https://res.cloudinary.com/dimmeavlk/video/upload/v1772449355/PXL_20260101_011255904_b3lvln.mov',
-         'images/seguin3.png',
-         'images/seguin4.jpg'
+         'images/seguin3.webp',
+         'images/seguin4.webp'
       ],
       credits: ['@noxa.prod', '@samuel.lephotographe', null, null, null],
       desc: {
@@ -510,10 +510,10 @@ const stationsData = {
       location: 'Moon Harbour, Bordeaux',
       images: [
          'https://res.cloudinary.com/dimmeavlk/video/upload/v1772458834/SB-_Wolverave_15_n4exdk.mp4',
-         'images/bunker4.jpg',
-         'images/bunker.jpg',
-         'images/bunker2.jpeg',
-         'images/bunker1.jpeg'
+         'images/bunker4.webp',
+         'images/bunker.webp',
+         'images/bunker2.webp',
+         'images/bunker1.webp'
       ],
       credits: ['@nicolasnourrit_visuals', '@nicolasnourrit_visuals', '@nicolasnourrit_visuals', '@oliversmith.prod', '@oliversmith.prod'],
       desc: {
