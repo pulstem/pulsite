@@ -909,7 +909,8 @@ section {
 	max-width: 1200px;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(280px, 400px));
+	justify-content: center;
 	gap: 24px;
 	overflow: hidden;
 	padding: 16px;
@@ -922,6 +923,9 @@ section {
 	border: 1px solid var(--border-glass);
 	transition: all 0.3s ease;
 	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+	display: block;
 }
 
 .event-image {
@@ -1127,6 +1131,32 @@ section {
 .stations-grid .event-card {
 	cursor: pointer;
 	transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.events-grid .event-card::after {
+	content: '↗';
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(4px);
+	border-radius: 50%;
+	font-size: 1rem;
+	color: white;
+	opacity: 0;
+	transform: scale(0.6);
+	transition: opacity 0.25s ease, transform 0.25s ease;
+	z-index: 10;
+}
+
+.events-grid .event-card:hover::after {
+	opacity: 1;
+	transform: scale(1);
 }
 
 .stations-grid .event-card:hover .event-image img {
@@ -1760,6 +1790,11 @@ footer {
 .reveal.visible {
 	opacity: 1;
 	transform: translateY(0);
+}
+
+.stations-grid .event-card.reveal {
+	opacity: 1;
+	transform: none;
 }
 
 .footer-bottom {

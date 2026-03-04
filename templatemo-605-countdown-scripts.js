@@ -46,18 +46,12 @@ function createParticles() {
       });
    }
 
-   let mouseX = -9999, mouseY = -9999;
-   window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; }, { passive: true });
-
    let scrollDelta = 0, lastScrollY = window.scrollY;
    window.addEventListener('scroll', () => {
       const y = window.scrollY;
       scrollDelta += y - lastScrollY;
       lastScrollY = y;
    }, { passive: true });
-
-   const REPEL_RADIUS = 220;
-   const REPEL_FORCE = 0.4;
 
    let lastTs = null;
    function animateDots(ts) {
@@ -72,27 +66,15 @@ function createParticles() {
       dots.forEach(dot => {
          dot.vy -= scrollImpulse * dot.parallaxFactor;
 
-         const dx = dot.x - mouseX;
-         const dy = dot.y - mouseY;
-         const dist = Math.sqrt(dx * dx + dy * dy);
-         const repelling = dist > 0 && dist < REPEL_RADIUS;
-
-         if (repelling) {
-            const force = (REPEL_RADIUS - dist) / REPEL_RADIUS * REPEL_FORCE * dot.repelStrength;
-            dot.vx += (dx / dist) * force * dt * 0.1;
-            dot.vy += (dy / dist) * force * dt * 0.1;
-         }
-
          dot.vx += (Math.random() - 0.5) * 0.02;
          dot.vy += (Math.random() - 0.5) * 0.02;
 
-         const friction = repelling ? 0.995 : 0.97;
-         dot.vx *= friction;
-         dot.vy *= friction;
+         dot.vx *= 0.97;
+         dot.vy *= 0.97;
 
-         if (repelling || scrolling) {
+         if (scrolling) {
             const speed = Math.sqrt(dot.vx * dot.vx + dot.vy * dot.vy);
-            const maxSpeed = repelling ? 0.6 + 0.8 * dot.repelStrength : 8 * dot.parallaxFactor;
+            const maxSpeed = 8 * dot.parallaxFactor;
             if (speed > maxSpeed) { dot.vx *= maxSpeed / speed; dot.vy *= maxSpeed / speed; }
          }
 
@@ -577,7 +559,6 @@ function setupStations() {
       if (navPrev) navPrev.disabled = idx <= 0;
       if (navNext) navNext.disabled = idx >= stationKeys.length - 1;
       const title = typeof data.title === 'object' ? (data.title[currentLang] || data.title.fr) : data.title;
-      setMainMedia(data.images[0], title, data.credits?.[0]);
       modalTitle.textContent = title;
       modalDesc.innerHTML = (data.desc[currentLang] || data.desc.fr).replace(/\n\n/g, '<br><br>');
       const locEl = document.querySelector('#stationModalLocation span span');
@@ -593,6 +574,7 @@ function setupStations() {
          thumb.addEventListener('click', () => setMainMedia(src, data.title, data.credits?.[i]));
          modalGallery.appendChild(thumb);
       });
+      setMainMedia(data.images[0], title, data.credits?.[0]);
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
