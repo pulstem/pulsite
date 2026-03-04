@@ -41,7 +41,6 @@ function createParticles() {
          fadeDuration: 1000 + Math.random() * 1500,
          visibleDuration: 5000 + Math.random() * 8000,
          hiddenDuration: 500 + Math.random() * 3000,
-         repelStrength: Math.random() < 0.5 ? 1.0 : 0.15,
          parallaxFactor: 0.2 + Math.random() * 1.6,
       });
    }
@@ -645,10 +644,6 @@ function setupStations() {
       updateArrows();
    }
 
-   document.querySelectorAll('[data-href]').forEach(card => {
-      card.addEventListener('click', () => window.open(card.dataset.href, '_blank', 'noopener'));
-   });
-
    document.querySelectorAll('[data-station]').forEach(card => {
       card.addEventListener('click', () => {
          if (grid) {
@@ -700,6 +695,15 @@ document.addEventListener('DOMContentLoaded', () => {
    setupScrollReveal();
    setupVideo();
    setupStations();
+   document.querySelectorAll('[data-href]').forEach(card => {
+      card.addEventListener('click', () => {
+         const a = document.createElement('a');
+         a.href = card.dataset.href;
+         a.target = '_blank';
+         a.rel = 'noopener';
+         a.click();
+      });
+   });
    handleScroll();
    let scrollTicking = false;
    window.addEventListener('scroll', () => {
