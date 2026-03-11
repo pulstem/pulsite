@@ -478,7 +478,7 @@ const stationsData = {
       title: 'Château de Seguin',
       location: 'Château de Seguin, Bordeaux',
       images: [
-         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772448734/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_ngxfyj.mov',
+         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1773257716/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_x0wjjt.mov',
          'images/seguin.webp',
          'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772449355/PXL_20260101_011255904_b3lvln.mov',
          'images/seguin3.webp',
@@ -574,13 +574,16 @@ function setupStations() {
          const vid = isVideo(src);
          const wrap = document.createElement('div');
          wrap.className = 'gallery-thumb-wrap';
-         const thumb = document.createElement(vid ? 'video' : 'img');
-         thumb.src = src;
-         if (vid) {
-            thumb.muted = true; thumb.playsInline = true; thumb.preload = 'metadata';
-            if (src.includes('cloudinary.com')) thumb.poster = src.replace(/\.[^.]+$/, '.jpg');
+         const thumb = document.createElement('img');
+         if (vid && src.includes('cloudinary.com')) {
+            // Use Cloudinary poster image (strip transformations, change ext to .jpg)
+            thumb.src = src.replace(/\/upload\/[^v]*v/, '/upload/v').replace(/\.[^.]+$/, '.jpg');
+         } else if (vid) {
+            thumb.src = '';
+         } else {
+            thumb.src = src;
          }
-         else thumb.alt = data.title;
+         thumb.alt = typeof data.title === 'object' ? (data.title[currentLang] || data.title.fr) : data.title;
          wrap.style.animationDelay = `${i * 0.08}s`;
          wrap.appendChild(thumb);
          if (vid) {
