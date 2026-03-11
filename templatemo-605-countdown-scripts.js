@@ -478,9 +478,9 @@ const stationsData = {
       title: 'Château de Seguin',
       location: 'Château de Seguin, Bordeaux',
       images: [
-         'https://res.cloudinary.com/dimmeavlk/video/upload/v1772448734/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_ngxfyj.mov',
+         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772448734/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_ngxfyj.mov',
          'images/seguin.webp',
-         'https://res.cloudinary.com/dimmeavlk/video/upload/v1772449355/PXL_20260101_011255904_b3lvln.mov',
+         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772449355/PXL_20260101_011255904_b3lvln.mov',
          'images/seguin3.webp',
          'images/seguin4.webp'
       ],
@@ -576,7 +576,10 @@ function setupStations() {
          wrap.className = 'gallery-thumb-wrap';
          const thumb = document.createElement(vid ? 'video' : 'img');
          thumb.src = src;
-         if (vid) { thumb.muted = true; thumb.playsInline = true; thumb.preload = 'metadata'; }
+         if (vid) {
+            thumb.muted = true; thumb.playsInline = true; thumb.preload = 'metadata';
+            if (src.includes('cloudinary.com')) thumb.poster = src.replace(/\.[^.]+$/, '.jpg');
+         }
          else thumb.alt = data.title;
          wrap.style.animationDelay = `${i * 0.08}s`;
          wrap.appendChild(thumb);
