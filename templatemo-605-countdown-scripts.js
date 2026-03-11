@@ -478,7 +478,7 @@ const stationsData = {
       title: 'Château de Seguin',
       location: 'Château de Seguin, Bordeaux',
       images: [
-         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1773257716/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_x0wjjt.mp4',
+         'https://res.cloudinary.com/dimmeavlk/video/upload/v1773257716/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_x0wjjt.mp4',
          'images/seguin.webp',
          'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772449355/PXL_20260101_011255904_b3lvln.mp4',
          'images/seguin3.webp',
@@ -536,15 +536,18 @@ function setupStations() {
       modalMain.innerHTML = '';
       if (isVideo(src)) {
          const video = document.createElement('video');
-         video.src = src;
-         video.autoplay = true;
-         video.loop = true;
+         video.setAttribute('autoplay', '');
+         video.setAttribute('loop', '');
+         video.setAttribute('muted', '');
+         video.setAttribute('playsinline', '');
+         video.setAttribute('preload', 'auto');
          video.muted = true;
-         video.playsInline = true;
-         video.preload = 'auto';
+         video.volume = 0;
+         video.src = src;
          video.style.width = '100%';
          video.style.borderRadius = '12px';
          modalMain.appendChild(video);
+         video.load();
          video.play().catch(() => {});
       } else {
          const img = document.createElement('img');
@@ -576,8 +579,8 @@ function setupStations() {
          wrap.className = 'gallery-thumb-wrap';
          const thumb = document.createElement('img');
          if (vid && src.includes('cloudinary.com')) {
-            // Use Cloudinary poster image (strip transformations, change ext to .jpg)
-            thumb.src = src.replace(/\/upload\/[^v]*v/, '/upload/v').replace(/\.[^.]+$/, '.jpg');
+            // Use Cloudinary poster image (strip transformations, add so_3 for non-black frame, change ext to .jpg)
+            thumb.src = src.replace(/\/upload\/[^v]*v/, '/upload/so_3/v').replace(/\.[^.]+$/, '.jpg');
          } else if (vid) {
             thumb.src = '';
          } else {
