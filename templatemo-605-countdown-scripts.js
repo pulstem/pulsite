@@ -478,9 +478,9 @@ const stationsData = {
       title: 'Château de Seguin',
       location: 'Château de Seguin, Bordeaux',
       images: [
-         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1773257716/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_x0wjjt.mov',
+         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1773257716/copy_9E2A3FFF-DF64-47DE-8FFB-31E89C0FD3A0_x0wjjt.mp4',
          'images/seguin.webp',
-         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772449355/PXL_20260101_011255904_b3lvln.mov',
+         'https://res.cloudinary.com/dimmeavlk/video/upload/f_mp4/v1772449355/PXL_20260101_011255904_b3lvln.mp4',
          'images/seguin3.webp',
          'images/seguin4.webp'
       ],
